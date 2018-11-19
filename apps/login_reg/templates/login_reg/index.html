@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <title>Login & Reg | Home</title>
+</head>
+
+<style>
+    body{
+    background-color:rgb(58, 77, 117);
+    color: white;
+}
+.container{
+    background-color:rgb(95, 106, 129);
+    color: white;
+}
+.form-group{
+    display: inline-block;
+    margin: 25%;
+    padding: 5px;
+}
+.form1{
+    float:left;    
+    width: auto;
+    margin: 20px;
+}
+.form2{
+    float:right;    
+    width: auto;
+    margin: 20px;
+    
+}
+</style>
+
+<body>
+
+    <div class='container'>
+        <h1>Welcome</h1>
+        <div class='form-group'>
+            <div class=form1>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action='/reg' method='POST'>
+                    {% csrf_token %}
+                    <h1>Registration</h1>
+
+                    First Name:<br>
+                    <input type='text' name='first_name' width='48'>
+                    <br>
+                    <br>
+
+                    Last Name:<br>
+                    <input type='text' name='last_name'>
+                    <br>
+                    <br>
+
+                    Email<br>
+                    <input type='email' name='email'>
+                    <br>
+                    <br>
+                    Password:<br>
+                    <input type='password' name='password'>
+                    <br>
+                    <br>
+                    Confirm Password:<br>
+                    <input type='password' name='conpassword'>
+                    <br>
+                    <br>
+                    <div class='submit'>
+                        <input type='submit' value='Register'>
+                    </div>
+                    <br>
+                    <br>
+                </form>
+            </div>
+            <div class=form2>
+                <form action='/login' method='POST'>
+                    {% csrf_token %}
+                    <h1>Login</h1>
+
+                    Email:<br>
+                    <input type='text' name='loginEmail'>
+                    <br>
+                    <br>
+
+                    Password:<br>
+                    <input type='password' name='loginPassword'>
+                    <br>
+                    <br>
+                    <div class='submit'>
+                        <input type='submit' value='Login'>
+                    </div>
+            </div>
+            </form>
+        </div>
+
+
+
+
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

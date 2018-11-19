@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <title>The Wall | Home</title>
+</head>
+<style>
+body{
+    background-color:rgb(95, 106, 129);
+    color: white;
+
+}
+.container{
+    background-color: rgb(95, 106, 129);
+    min-height: 200px;
+    color: white;
+    
+}
+.msgsLoop{
+    background-color: rgb(95, 106, 129);
+    color: white; 
+}
+.userComment{
+    background-color: rgb(95, 106, 129);
+    color:white;
+}
+
+
+
+
+</style>
+<!-- ##########################POST_FORM_POST############################################## -->
+
+<body>
+    <div class='container'>
+        <div class='form-group'>
+            <!--POST BEGIN-->
+            <form action='/wall/postMSG' method='POST'>
+                {% csrf_token %}
+                <h1>Success! Welcome, {{request.session.first_name}}!</h1>
+                <h3>Post a message</h3>
+                <textarea rows='4' name='commentBox1' cols='50' style='width: 100%; height:20%;'></textarea>
+                <input type="submit" value="Post a message" style='float: right;'>
+            </form>
+            <!--POST END-->
+        </div>
+
+
+            <!-- ########################POSTING_MESSAGES_SECTION_GET########################################## -->
+            <div class='msgsLoop' name='msgsLoop' ;>
+                <!--MESSAGES CONTAINER-->
+                <div class='userPost' name='userPost' ;>
+                    <!--USERS POST DISPLAY-->
+                    {% for message in messages %}
+                    <p>Posted by: {{message.user.name}}</p>
+                    <p>{{message.message}}</p>
+                    {% endfor %}
+                    <br>
+                </div>
+                <!-- #########################POSTING_COMMENTS_SECTION_GET###################################### -->
+                <div class='userComment' name='userComment' ;>
+                    <!--FRIENDS COMMENTS DISPLAY-->
+                        {% for comment in message.comments %}
+                        <p>Message by:{{comments.user.name}}</p>
+                        <p>{{comment.user.commment}}</p>
+                        {% endfor %}
+                </div>
+                <!-- #########################POST_COMMENT_FORM_POST############################################# -->
+                <div class='form-group'>
+                <form action='/wall/postCMT' method='POST'>
+                    {% csrf_token %}
+                    <textarea rows='4' name='commentBox2' cols='50' style='width: 100%; height:20%;'></textarea>
+                    <input type="submit" value="Post a comment" style='float: right;'>
+                </form>
+                <!--POST END-->
+                </div>
+            </div> <!-- Messages loop Div End-->
+        </div>
+        <!--FORM GROUP END-->
+    </div><!-- container Div End -->
+</body>
+
+</html>
